@@ -1,16 +1,18 @@
 #!/bin/bash
 
 #-------------------------------------------#
-# $ whoami									#
-# d3toxxx									#
-# $ date									#
-# Tue 28 Apr 2020 00:00:00 AM EDT			#
-# $ man recon								#
-#	Step1: chmod +x recon.sh				#
-#	Step2: ./recon.sh <IP Address>			#
-#	Optional: > [filename].txt				#
-# $ echo enjoy!								#
-# enjoy!									#
+# $ whoami							                		#
+# d3toxxx							                  		#
+# $ date							                  		#
+# Tue 28 Apr 2020 00:00:00 AM EDT	      		#
+# $ recon.sh -s 				              			#
+# v0.1									                  	#
+# $ man recon						                		#
+#	Step1: chmod +x recon.sh			          	#
+#	Step2: ./recon.sh <IP Address>		      	#
+#	Optional: > [filename].txt			        	#
+# $ echo enjoy!								              #
+# enjoy!									                  #
 #-------------------------------------------#
   
 #NMAP
