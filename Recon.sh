@@ -16,7 +16,7 @@ nmap -A -T4 $1 -n --open
 
 sleep 1
 
-#Dirb
+#GoBuster
 echo "                                  "
 echo "----------------------------------"
 echo GoBuster
