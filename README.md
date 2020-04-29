@@ -1,5 +1,5 @@
 # Recon
-Repository of several recon scripts I have plan on putting together
+Repository of several recon scripts I plan on putting together
 
 
 Using recon.sh-
