@@ -12,7 +12,7 @@ echo NMAP
 echo "----------------------------------"
 echo "                                  "
 sleep 1
-nmap -sV -A -T4 -O $1 --open
+nmap -A -T4 $1 -n --open
 
 sleep 1
 
