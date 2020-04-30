@@ -6,6 +6,26 @@
 #-------------------------------------------#
 
 #-------------------------------------------#
+# Tools PATH                                #
+#-------------------------------------------#
+
+if [ ! -L $0 ]; then
+	SCRIPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+else
+	SCRIPATH=`dirname $(readlink -f $0)`
+fi
+
+. $SCRIPATH/lib/nmap.sh
+. $SCRIPATH/lib/gobuster.sh
+. $SCRIPATH/lib/nikto.sh
+. $SCRIPATH/lib/toolcheck.sh
+
+
+#-------------------------------------------#
+# Main program                              #
+#-------------------------------------------#
+
+#-------------------------------------------#
 # Help                                      #
 #-------------------------------------------#
 Help()
@@ -16,36 +36,53 @@ Help()
    echo "Syntax: scriptTemplate [h|v|o]"
    echo "options:"
    echo "h     Print this Help."
-   echo "v     Verbose mode."
-   echo "o     Save to text file."
+   echo "t     Target"
    echo
 }
 
 #-------------------------------------------#
-# Main program                              #
+# Input                                     #
 #-------------------------------------------#
+Input()
+{
+    # Accepts input
+    target="$1"
+}
 
 #-------------------------------------------#
 # Input Options                             #
 #-------------------------------------------#
-# Get the options
-while getopts ":h" option; do
+while getopts ":ht:" option; do
    case $option in
       h) # display Help
          Help
          exit;;
          \?) # incorrect option
-         echo "Error: Invalid option"
+         echo "Wrong option"
+         exit;;
+      t) # accept input
+         Input
+         exit;;
+         \?) # incorrect option
+         echo "Wrong option"
          exit;;
    esac
 done
 
-if [ ! -L $0 ]; then
-	SCRIPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-else
-	SCRIPATH=`dirname $(readlink -f $0)`
-fi
+#-------------------------------------------#
+# Checking Root Privileges                  #
+#-------------------------------------------#
 
-. $SCRIPATH/tools/nmap.sh
-. $SCRIPATH/tools/gobuster.sh
-. $SCRIPATH/tools/nikto.sh
+not_sudo
+
+#-------------------------------------------#
+# Checking Target Is Set                    #
+#-------------------------------------------#
+
+target_not_set
+
+#-------------------------------------------#
+#Checks to ensure NMAP is installed         #
+#-------------------------------------------#
+
+tool_not_found $NMAP
