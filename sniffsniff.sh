@@ -9,17 +9,10 @@
 # Tools PATH                                #
 #-------------------------------------------#
 
-if [ ! -L $0 ]; then
-	SCRIPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-else
-	SCRIPATH=`dirname $(readlink -f $0)`
-fi
-
-. $SCRIPATH/lib/nmap.sh
-. $SCRIPATH/lib/gobuster.sh
-. $SCRIPATH/lib/nikto.sh
-. $SCRIPATH/lib/toolcheck.sh
-
+source /lib/toolcheck.sh
+source /lib/nmap.sh
+source /lib/gobuster.sh
+source /lib/nikto.sh
 
 #-------------------------------------------#
 # Main program                              #
