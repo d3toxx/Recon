@@ -1,10 +1,14 @@
 #!/bin/bash
 
-declare -r NMAP='dpkg -s NMAP &> /dev/null'
+#-------------------------------------------#
+# Tool Check                                #
+#-------------------------------------------#
+
+declare -r NMAP=`which nmap`
 
 function tool_not_found() {
-  if [ "$NMAP" -eq 0 ]; then
-    echo "Package is not installed"
+if [ ! -x $1 ]; then
+    error "can't find $1 executable"
     exit 1
   fi
   return 1

@@ -4,7 +4,6 @@
 # $ whoami                                  #
 # d3toxxx                                   #
 #-------------------------------------------#
-
 #-------------------------------------------#
 # Tools PATH                                #
 #-------------------------------------------#
@@ -23,7 +22,6 @@ source $PATH/lib/nikto.sh
 #-------------------------------------------#
 # Main program                              #
 #-------------------------------------------#
-
 #-------------------------------------------#
 # Help                                      #
 #-------------------------------------------#
@@ -32,10 +30,10 @@ function Help()
    # Display Help
    echo "Add description of the script functions here."
    echo
-   echo "Syntax: scriptTemplate [h|v|o]"
+   echo "Syntax: scriptTemplate [h]"
    echo "options:"
    echo "h     Print this Help."
-   echo "t     Target"
+   echo "Usage: sudo ./[script].sh [IP or site]"
    echo
 }
 
@@ -46,16 +44,15 @@ while getopts "ht:" option; do
    case "$option" in
       h) # display Help
          Help
-         ;;
-      t) # accept input
-         Target="$1"
-         ;;
+         ;; 
       ?) # incorrect option
          echo "Please see use -h for any questions"
          exit 1
          ;;
    esac
 done
+
+target="$2"
 
 #-------------------------------------------#
 # Checking Root Privileges                  #
@@ -74,6 +71,5 @@ tool_not_found $NMAP
 #-------------------------------------------#
 
 #HTB/CTF Scanning
-declare -r NMAP='dpkg -s NMAP &> /dev/null'
 
-mapping_networks $Target
+mapping_networks $target
