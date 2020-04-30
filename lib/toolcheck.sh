@@ -21,7 +21,6 @@ fi
 function target_not_set() {
 if [ -z $target ]; then
   echo "error missing target"
-  usage
   exit 1
 fi
 }

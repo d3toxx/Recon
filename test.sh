@@ -47,6 +47,19 @@ if [ "$NetworkMAP" ]; then
   echo -e "\n"
 fi
 
+GoBuster=`gobuster dns -d $1 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 40 2>/dev/null \;`
+if [ "$GoBuster" ]; then
+  echo -e "\e[00;31m[-] Running GoBuster" 
+  echo -e "\n"
+fi
+
+Nikto=`nikto -h http://$1/ 2>/dev/null \;`
+if [ "$Nikto" ]; then
+  echo -e "\e[00;31m[-] Running Nikto" 
+  echo -e "\n"
+fi
+
+
   
 #NMAP
 #echo "                                  "
