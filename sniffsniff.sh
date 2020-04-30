@@ -9,10 +9,16 @@
 # Tools PATH                                #
 #-------------------------------------------#
 
-source /lib/toolcheck.sh
-source /lib/nmap.sh
-source /lib/gobuster.sh
-source /lib/nikto.sh
+if [ ! -L $0 ]; then
+	PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+else
+	PATH=`dirname $(readlink -f $0)`
+fi
+
+source $PATH/lib/toolcheck.sh
+source $PATH/lib/nmap.sh
+source $PATH/lib/gobuster.sh
+source $PATH/lib/nikto.sh
 
 #-------------------------------------------#
 # Main program                              #
