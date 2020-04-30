@@ -28,12 +28,12 @@ source $PATH/lib/nikto.sh
 function Help()
 {
    # Display Help
-   echo "Add description of the script functions here."
    echo
-   echo "Syntax: scriptTemplate [h]"
-   echo "options:"
-   echo "h     Print this Help."
-   echo "Usage: sudo ./[script].sh [IP or site]"
+   echo "Thank you for using sniffer! Enjoy!"
+   echo "Options:"
+   echo "-h     Print this Help."
+   echo "-t	Target, IP, Site."
+   echo "Howto: sudo ./[script].sh [IP or site]"
    echo
 }
 
@@ -44,6 +44,7 @@ while getopts "ht:" option; do
    case "$option" in
       h) # display Help
          Help
+         exit 3
          ;; 
       ?) # incorrect option
          echo "Please see use -h for any questions"
