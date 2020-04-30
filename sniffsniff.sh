@@ -27,7 +27,7 @@ source $PATH/lib/nikto.sh
 #-------------------------------------------#
 # Help                                      #
 #-------------------------------------------#
-Help()
+function Help()
 {
    # Display Help
    echo "Add description of the script functions here."
@@ -40,31 +40,20 @@ Help()
 }
 
 #-------------------------------------------#
-# Input                                     #
-#-------------------------------------------#
-Input()
-{
-    # Accepts input
-    target="$1"
-}
-
-#-------------------------------------------#
 # Input Options                             #
 #-------------------------------------------#
-while getopts ":ht:" option; do
-   case $option in
+while getopts "ht:" option; do
+   case "$option" in
       h) # display Help
          Help
-         exit;;
-         \?) # incorrect option
-         echo "Wrong option"
-         exit;;
+         ;;
       t) # accept input
-         Input
-         exit;;
-         \?) # incorrect option
-         echo "Wrong option"
-         exit;;
+         Target="$1"
+         ;;
+      ?) # incorrect option
+         echo "Please see use -h for any questions"
+         exit 1
+         ;;
    esac
 done
 
@@ -73,12 +62,6 @@ done
 #-------------------------------------------#
 
 not_sudo
-
-#-------------------------------------------#
-# Checking Target Is Set                    #
-#-------------------------------------------#
-
-target_not_set
 
 #-------------------------------------------#
 #Checks to ensure NMAP is installed         #
@@ -91,4 +74,6 @@ tool_not_found $NMAP
 #-------------------------------------------#
 
 #HTB/CTF Scanning
-mapping_networks $target
+declare -r NMAP='dpkg -s NMAP &> /dev/null'
+
+mapping_networks $Target

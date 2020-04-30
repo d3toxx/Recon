@@ -1,11 +1,10 @@
 #!/bin/bash
 
-declare -r NMAP='which nmap'
-
+declare -r NMAP='dpkg -s NMAP &> /dev/null'
 
 function tool_not_found() {
-  if [ ! -x $1 ]; then
-    echo "error $1 Not installed"
+  if [ "$NMAP" -eq 0 ]; then
+    echo "Package is not installed"
     exit 1
   fi
   return 1
@@ -13,14 +12,7 @@ function tool_not_found() {
 
 function not_sudo() {
 if [ $UID -ne 0 -a $EUID -ne 0 ]; then
-  echo "error Gotta SUDO bro"
-  exit 1
-fi
-}
-
-function target_not_set() {
-if [ -z $target ]; then
-  echo "error missing target"
+  echo "Gotta SUDO bro"
   exit 1
 fi
 }
