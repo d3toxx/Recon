@@ -5,5 +5,5 @@
 #-------------------------------------------#
 
 function mapping_networks () {
-    $NMAP -A -T4 $target -n --open
+    command nmap -A -T4 $target -n --open
 }
