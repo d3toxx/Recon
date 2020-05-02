@@ -65,7 +65,7 @@ not_sudo
 #Checks to ensure NMAP is installed         #
 #-------------------------------------------#
 
-tool_not_found $NMAP
+tool_not_found $VNMAP
 
 #-------------------------------------------#
 #Scanning                                   #

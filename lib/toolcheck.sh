@@ -4,11 +4,11 @@
 # Tool Check                                #
 #-------------------------------------------#
 
-declare -r NMAP=`which nmap`
+declare -r VNMAP=which nmap
 
 function tool_not_found() {
 if [ ! -x $1 ]; then
-    error "can't find $1 executable"
+    echo "error $1 not installed"
     exit 1
   fi
   return 1
