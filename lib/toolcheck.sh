@@ -4,7 +4,7 @@
 # Tool Check                                #
 #-------------------------------------------#
 
-declare -r VNMAP=which nmap
+declare -r VNMAP= command which nmap
 
 function tool_not_found() {
 if [ ! -x $1 ]; then
