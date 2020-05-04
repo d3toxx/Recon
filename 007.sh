@@ -14,7 +14,7 @@ else
 	PATH=`dirname $(readlink -f $0)`
 fi
 
-source $PATH/lib/toolcheck.sh
+source $PATH/lib/functions.sh
 source $PATH/lib/nmap.sh
 source $PATH/lib/gobuster.sh
 source $PATH/lib/nikto.sh
@@ -22,20 +22,6 @@ source $PATH/lib/nikto.sh
 #-------------------------------------------#
 # Main program                              #
 #-------------------------------------------#
-#-------------------------------------------#
-# Help                                      #
-#-------------------------------------------#
-function Help()
-{
-   # Display Help
-   echo
-   echo "Thank you for using sniffer! Enjoy!"
-   echo "Options:"
-   echo "-h     Print this Help."
-   echo "-t	Target, IP, Site."
-   echo "Howto: sudo ./[script].sh [IP or site]"
-   echo
-}
 
 #-------------------------------------------#
 # Input Options                             #
@@ -53,24 +39,6 @@ while getopts "ht:" option; do
    esac
 done
 
-target="$2"
-
-#-------------------------------------------#
-# Checking Root Privileges                  #
-#-------------------------------------------#
-
-not_sudo
-
-#-------------------------------------------#
-#Checks to ensure NMAP is installed         #
-#-------------------------------------------#
-
-tool_not_found $VNMAP
-
-#-------------------------------------------#
-#Scanning                                   #
-#-------------------------------------------#
-
-#HTB/CTF Scanning
+target="$1"
 
 mapping_networks $target
